@@ -20,6 +20,7 @@ var svgElements = ['<circle fill="none" stroke="#000000" stroke-width="5" stroke
 
 var wrongGuess = function(letter) {
 	document.getElementById("wrongGuesses").innerHTML += " " + letter;
+	// next: draw man
 }
 
 window.onload = pickWord();
