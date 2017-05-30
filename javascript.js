@@ -17,7 +17,7 @@ const pickWord = () => {
 	mysteryWord = wordList[Math.floor(Math.random() * wordList.length)];
 	console.log(mysteryWord);
 	for (let i = 0; i < mysteryWord.length; i++) {
-		document.getElementById("wordBlanks").innerHTML += " _";
+		document.getElementById("wordBlanks").innerHTML += `<span id="blank${i}"> _</span>`;
 	}
 }
 
@@ -30,7 +30,11 @@ const wrongGuess = letter => {
 
 const rightGuess = letter => {
 	totalRight++;
-	// indexOf
+	for (var i = 0; i < mysteryWord.length; i++) {
+		if (mysteryWord[i] === letter) {
+			document.getElementById("blank" + i).innerHTML = " " + letter;
+		}
+	}
 	alreadyGuessed.push(letter);
 }
 
@@ -51,9 +55,6 @@ document.onkeyup = event => {
 	}
 }
 
-// steps:
-// 1. computer picks out word (done)
-// 2. user presses a key
-// 2a. account for edge cases: non-letter key (numerals, punctuation, control keys) and multiple presses of the same key
-// 3. check user guess for right or wrong
-// right: discover the indices of the instances of that letter in mysteryWord
+// next:
+// check for winning and losing
+// future: display score, have a score reset button
