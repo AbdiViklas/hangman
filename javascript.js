@@ -16,9 +16,23 @@ let alreadyGuessed = [];
 const pickWord = () => {
 	mysteryWord = wordList[Math.floor(Math.random() * wordList.length)];
 	console.log(mysteryWord);
+	document.getElementById("wordBlanks").innerHTML = "Mystery word: "; //clear possible contents from a previous game
 	for (let i = 0; i < mysteryWord.length; i++) {
 		document.getElementById("wordBlanks").innerHTML += `<span id="blank${i}"> _</span>`;
 	}
+}
+
+const reset = () => {
+	totalRight = 0;
+	totalWrong = 0;
+	alreadyGuessed = [];
+	pickWord();
+	document.getElementById("wrongGuesses").innerHTML = "Wrong guesses: "
+	document.getElementById("svg").innerHTML = `<title>Layer 1</title>
+				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="2.5" y1="404.460793" x2="123.486114" y2="404.460793" id="gallows base"/>
+				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="62.303922" y1="4.460785" x2="62.303922" y2="406.852957" id="gallows upright"/>
+				<line fill="none" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="59.362741" y1="2.500001" x2="182.07208" y2="2.500001" id="gallows upright" stroke="#000000"/>
+				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="177.009807" y1="19.166668" x2="177.009807" y2="5.441177" id="rope"/>`;
 }
 
 const wrongGuess = letter => {
@@ -26,6 +40,10 @@ const wrongGuess = letter => {
 	document.getElementById("wrongGuesses").innerHTML += " " + letter;
 	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1];
 	alreadyGuessed.push(letter);
+	if (totalWrong === 6) {
+		alert("You lose. The word was: " + mysteryWord);
+		reset();
+	}
 }
 
 const rightGuess = letter => {
@@ -36,6 +54,10 @@ const rightGuess = letter => {
 		}
 	}
 	alreadyGuessed.push(letter);
+	if (totalRight === mysteryWord.length) {
+		alert("Yay!! You win!");
+		reset();
+	}
 }
 
 window.onload = pickWord();
