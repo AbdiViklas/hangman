@@ -54,6 +54,7 @@ const rightGuess = letter => {
 		}
 	}
 	alreadyGuessed.push(letter);
+	// right now this check isn't always triggering. Why? It seems to be when mysteryWord contains duplicates of some letter...
 	if (totalRight === mysteryWord.length) {
 		alert("Yay!! You win!");
 		reset();
@@ -77,6 +78,4 @@ document.onkeyup = event => {
 	}
 }
 
-// next:
-// check for winning and losing
 // future: display score, have a score reset button
