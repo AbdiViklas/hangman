@@ -1,6 +1,6 @@
-let wordList = ["tight","flavor","pass","navy","peasant","ridge","slump","outlook","scrap","crevice","determine","fling","texture","rub","citizen","crouch","facade","harvest","physical","bell","breeze","upset","limited","bounce","cap","sun","elaborate","herd","useful","stand","resist","clinic","alive","use","country","tycoon","terms","irony","score","ton","plant","basin","folk","root","ego","goat","stage","dry","powder","straw"];
+const wordList = ["tight","flavor","pass","navy","peasant","ridge","slump","outlook","scrap","crevice","determine","fling","texture","rub","citizen","crouch","facade","harvest","physical","bell","breeze","upset","limited","bounce","cap","sun","elaborate","herd","useful","stand","resist","clinic","alive","use","country","tycoon","terms","irony","score","ton","plant","basin","folk","root","ego","goat","stage","dry","powder","straw"];
 
-let svgElements = ['<circle fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="181.032199" cy="90.062339" r="52.325901" id="head"/>',
+const svgElements = ['<circle fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="181.032199" cy="90.062339" r="52.325901" id="head"/>',
 	'<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="181.032199" y1="144.062339" x2="182.032199" y2="301.062339" id="torso"/>',
 	' <line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="121.425061" y1="157.419516" x2="180.353635" y2="216.34809" id="left_arm"/>',
 	'<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="180.353632" y1="159.205231" x2="239.282206" y2="218.133805" id="right_arm" transform="rotate(90 209.8179168701172,188.66950988769534) "/>',
@@ -13,7 +13,7 @@ let totalRight = 0;
 let totalWrong = 0;
 let alreadyGuessed = [];
 
-let pickWord = () => {
+const pickWord = () => {
 	mysteryWord = wordList[Math.floor(Math.random() * wordList.length)];
 	console.log(mysteryWord);
 	for (let i = 0; i < mysteryWord.length; i++) {
@@ -21,14 +21,17 @@ let pickWord = () => {
 	}
 }
 
-let wrongGuess = letter => {
+const wrongGuess = letter => {
+	totalWrong++;
 	document.getElementById("wrongGuesses").innerHTML += " " + letter;
-	// next: draw man
-	alreadyGuessed.push(letter)
+	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1];
+	alreadyGuessed.push(letter);
 }
 
-let rightGuess = letter => {
-	// buncha indexOf s!
+const rightGuess = letter => {
+	totalRight++;
+	// indexOf
+	alreadyGuessed.push(letter);
 }
 
 window.onload = pickWord();
@@ -53,4 +56,4 @@ document.onkeyup = event => {
 // 2. user presses a key
 // 2a. account for edge cases: non-letter key (numerals, punctuation, control keys) and multiple presses of the same key
 // 3. check user guess for right or wrong
-// right: use a 
+// right: discover the indices of the instances of that letter in mysteryWord
