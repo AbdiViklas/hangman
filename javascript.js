@@ -54,6 +54,7 @@ const rightGuess = letter => {
 		}
 	}
 	alreadyGuessed.push(letter);
+	return;
 }
 
 const winCheck = () => {
@@ -76,7 +77,7 @@ document.onkeyup = event => {
 	} else if (!mysteryWord.includes(userGuess)) {
 		wrongGuess(userGuess);
 	} else {
-		rightGuess(userGuess).then(winCheck());
+		rightGuess(userGuess).then(winCheck);
 	}
 }
 
