@@ -47,17 +47,13 @@ const wrongGuess = letter => {
 }
 
 const rightGuess = letter => {
-	totalRight++;
 	for (var i = 0; i < mysteryWord.length; i++) {
 		if (mysteryWord[i] === letter) {
 			document.getElementById("blank" + i).innerHTML = " " + letter;
+			totalRight++; //iterate here to account for multiple ocurrences of the same letter
 		}
 	}
 	alreadyGuessed.push(letter);
-	return;
-}
-
-const winCheck = () => {
 	if (totalRight === mysteryWord.length) {
 		alert("Yay!! You win!");
 		reset();
@@ -77,7 +73,7 @@ document.onkeyup = event => {
 	} else if (!mysteryWord.includes(userGuess)) {
 		wrongGuess(userGuess);
 	} else {
-		rightGuess(userGuess).then(winCheck);
+		rightGuess(userGuess);
 	}
 }
 
