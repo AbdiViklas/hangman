@@ -47,14 +47,13 @@ const wrongGuess = letter => {
 }
 
 const rightGuess = letter => {
-	totalRight++;
 	for (var i = 0; i < mysteryWord.length; i++) {
 		if (mysteryWord[i] === letter) {
 			document.getElementById("blank" + i).innerHTML = " " + letter;
+			totalRight++; //iterate here to account for multiple ocurrences of the same letter
 		}
 	}
 	alreadyGuessed.push(letter);
-	// right now this check isn't always triggering. Why? It seems to be when mysteryWord contains duplicates of some letter...
 	if (totalRight === mysteryWord.length) {
 		alert("Yay!! You win!");
 		reset();
