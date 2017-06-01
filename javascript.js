@@ -12,6 +12,7 @@ let mysteryWord = "";
 let totalRight = 0;
 let totalWrong = 0;
 let alreadyGuessed = [];
+let gameOver = false;
 
 const pickWord = () => {
 	mysteryWord = wordList[Math.floor(Math.random() * wordList.length)];
@@ -23,6 +24,7 @@ const pickWord = () => {
 }
 
 const reset = () => {
+	gameOver = false;
 	totalRight = 0;
 	totalWrong = 0;
 	alreadyGuessed = [];
@@ -46,11 +48,11 @@ const wrongGuess = letter => {
 	if (totalWrong === 6) {
 		$("#rightCol").append(`
 			<div class="alert alert-danger alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h3>Sorry, you lost.</h3>
 				<p>The word was "${mysteryWord}"</p>
 				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
 			</div>`);
+		gameOver = true;
 	}
 }
 
@@ -66,14 +68,17 @@ const rightGuess = letter => {
 	if (totalRight === mysteryWord.length) {
 		$("#rightCol").append(`
 			<div class="alert alert-success alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h3>Yay! You won!</h3>
 				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
 			</div>`);
+		gameOver = true;
 	}
 }
 
 const guessLetter = userGuess => {
+	if (gameOver) {
+		return;
+	}
 	console.log(userGuess);
 	if (!(/^[a-z]$/).test(userGuess) || alreadyGuessed.includes(userGuess)) {
 		return;
