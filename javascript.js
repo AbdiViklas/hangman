@@ -14,6 +14,7 @@ var mysteryWord = "";
 var totalRight = 0;
 var totalWrong = 0;
 var alreadyGuessed = [];
+var gameOver = false; // set to true to halt input on win or loss
 
 // The computer picks a word from the list and updates the DOM. To be run at the start of every game (included in reset()).
 function pickWord() {
@@ -39,6 +40,7 @@ function reset() {
 				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="177.009807" y1="19.166668" x2="177.009807" y2="5.441177" id="rope"/>`);
 	$(".alert").remove();
 	$(".invisible").removeClass("invisible");
+	gameOver = false;
 }
 
 // act on a wrong guess and check for game losing
@@ -56,9 +58,10 @@ function wrongGuess(letter) {
 				<p>The word was "${mysteryWord}"</p>
 				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
 			</div>`);
+		gameOver = true;
 	}
 }
-
+	
 function rightGuess(letter) {
 	for (var i = 0; i < mysteryWord.length; i++) {
 		if (mysteryWord[i] === letter) {
@@ -75,12 +78,13 @@ function rightGuess(letter) {
 				<h3>Yay! You won!</h3>
 				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
 			</div>`);
+		gameOver = true;
 	}
 }
 
 function guessletter(userGuess) {
 	console.log(userGuess);
-	if (!(/^[a-z]$/).test(userGuess) || alreadyGuessed.includes(userGuess)) {
+	if (gameOver === true || !(/^[a-z]$/).test(userGuess) || alreadyGuessed.includes(userGuess)) {
 		return;
 	} else if (!mysteryWord.includes(userGuess)) {
 		wrongGuess(userGuess);
