@@ -13,7 +13,7 @@ var totalRight = 0;
 var totalWrong = 0;
 var alreadyGuessed = [];
 
-var pickWord = function() {
+function pickWord() {
 	mysteryWord = wordList[Math.floor(Math.random() * wordList.length)];
 	console.log(mysteryWord);
 	$("#wordBlanks").html("Mystery word: "); //clear possible contents from a previous game
@@ -22,7 +22,7 @@ var pickWord = function() {
 	}
 }
 
-var reset = function() {
+function reset() {
 	totalRight = 0;
 	totalWrong = 0;
 	alreadyGuessed = [];
@@ -37,7 +37,7 @@ var reset = function() {
 	$(".invisible").removeClass("invisible");
 }
 
-var wrongGuess = function(letter) {
+function wrongGuess(letter) {
 	totalWrong++;
 	$("#wrongGuesses").append(" " + letter);
 	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1]; //jQuery doesn't play well with the XML markup of SVG
@@ -54,7 +54,7 @@ var wrongGuess = function(letter) {
 	}
 }
 
-var rightGuess = function(letter) {
+function rightGuess(letter) {
 	for (var i = 0; i < mysteryWord.length; i++) {
 		if (mysteryWord[i] === letter) {
 			totalRight++; //iterate here to account for multiple ocurrences of the same letter
@@ -73,7 +73,7 @@ var rightGuess = function(letter) {
 	}
 }
 
-var guessletter = function(userGuess) {
+function guessletter(userGuess) {
 	console.log(userGuess);
 	if (!(/^[a-z]$/).test(userGuess) || alreadyGuessed.includes(userGuess)) {
 		return;
