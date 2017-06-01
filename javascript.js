@@ -75,9 +75,7 @@ const rightGuess = letter => {
 
 const guessLetter = userGuess => {
 	console.log(userGuess);
-	if (!(/^[a-z]$/).test(userGuess)) {
-		return;
-	} else if (alreadyGuessed.includes(userGuess)) {
+	if (!(/^[a-z]$/).test(userGuess) || alreadyGuessed.includes(userGuess)) {
 		return;
 	} else if (!mysteryWord.includes(userGuess)) {
 		wrongGuess(userGuess);
