@@ -76,7 +76,6 @@ const rightGuess = letter => {
 const guessLetter = userGuess => {
 	console.log(userGuess);
 	if (!(/^[a-z]$/).test(userGuess)) {
-		alert("Letter keys only, please.");
 		return;
 	} else if (alreadyGuessed.includes(userGuess)) {
 		return;
