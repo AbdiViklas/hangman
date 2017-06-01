@@ -54,12 +54,8 @@ const wrongGuess = letter => {
 const rightGuess = letter => {
 	for (var i = 0; i < mysteryWord.length; i++) {
 		if (mysteryWord[i] === letter) {
-<<<<<<< HEAD
-			document.getElementById("blank" + i).innerHTML = " " + letter;
 			totalRight++; //iterate here to account for multiple ocurrences of the same letter
-=======
 			$("#blank" + i).html(" " + letter);
->>>>>>> mobile-friendly
 		}
 	}
 	alreadyGuessed.push(letter);
