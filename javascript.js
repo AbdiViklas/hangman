@@ -1,5 +1,7 @@
 var wordList = ["tight","flavor","pass","navy","peasant","ridge","slump","outlook","scrap","crevice","determine","fling","texture","rub","citizen","crouch","facade","harvest","physical","bell","breeze","upset","limited","bounce","cap","sun","elaborate","herd","useful","stand","resist","clinic","alive","use","country","tycoon","terms","irony","score","ton","plant","basin","folk","root","ego","goat","stage","dry","powder","straw"];
+// future feature: poll a random word generating API to build wordList
 
+// the gallows is already in the html. These are the elements of the man:
 var svgElements = ['<circle fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="181.032199" cy="90.062339" r="52.325901" id="head"/>',
 	'<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="181.032199" y1="144.062339" x2="182.032199" y2="301.062339" id="torso"/>',
 	' <line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="121.425061" y1="157.419516" x2="180.353635" y2="216.34809" id="left_arm"/>',
@@ -13,6 +15,7 @@ var totalRight = 0;
 var totalWrong = 0;
 var alreadyGuessed = [];
 
+// The computer picks a word from the list and updates the DOM. To be run at the start of every game (included in reset()).
 function pickWord() {
 	mysteryWord = wordList[Math.floor(Math.random() * wordList.length)];
 	console.log(mysteryWord);
@@ -22,6 +25,7 @@ function pickWord() {
 	}
 }
 
+// reset DOM and counter variables at the start of each game
 function reset() {
 	totalRight = 0;
 	totalWrong = 0;
@@ -37,6 +41,7 @@ function reset() {
 	$(".invisible").removeClass("invisible");
 }
 
+// act on a wrong guess and check for game losing
 function wrongGuess(letter) {
 	totalWrong++;
 	$("#wrongGuesses").append(" " + letter);
