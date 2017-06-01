@@ -34,6 +34,7 @@ const reset = () => {
 				<line fill="none" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="59.362741" y1="2.500001" x2="182.07208" y2="2.500001" id="gallows upright" stroke="#000000"/>
 				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="177.009807" y1="19.166668" x2="177.009807" y2="5.441177" id="rope"/>`);
 	$(".alert").remove();
+	$(".invisible").removeClass("invisible");
 }
 
 const wrongGuess = letter => {
@@ -41,6 +42,7 @@ const wrongGuess = letter => {
 	$("#wrongGuesses").append(" " + letter);
 	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1]; //jQuery doesn't play well with the XML markup of SVG
 	alreadyGuessed.push(letter);
+	$("#" + letter).addClass("invisible");
 	if (totalWrong === 6) {
 		$("#rightCol").append(`
 			<div class="alert alert-danger alert-dismissible" role="alert">
@@ -60,6 +62,7 @@ const rightGuess = letter => {
 		}
 	}
 	alreadyGuessed.push(letter);
+	$("#" + letter).addClass("invisible");
 	if (totalRight === mysteryWord.length) {
 		$("#rightCol").append(`
 			<div class="alert alert-success alert-dismissible" role="alert">
