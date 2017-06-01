@@ -58,6 +58,7 @@ const rightGuess = letter => {
 }
 
 const winCheck = () => {
+	console.log("winCheck fired");
 	if (totalRight === mysteryWord.length) {
 		alert("Yay!! You win!");
 		reset();
@@ -75,6 +76,7 @@ const guessLetter = userGuess => {
 		wrongGuess(userGuess);
 	} else {
 		rightGuess(userGuess);
+		console.log("here goes winCheck")
 		winCheck();
 	}
 }
