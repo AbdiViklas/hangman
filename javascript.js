@@ -1,6 +1,6 @@
-const wordList = ["tight","flavor","pass","navy","peasant","ridge","slump","outlook","scrap","crevice","determine","fling","texture","rub","citizen","crouch","facade","harvest","physical","bell","breeze","upset","limited","bounce","cap","sun","elaborate","herd","useful","stand","resist","clinic","alive","use","country","tycoon","terms","irony","score","ton","plant","basin","folk","root","ego","goat","stage","dry","powder","straw"];
+var wordList = ["tight","flavor","pass","navy","peasant","ridge","slump","outlook","scrap","crevice","determine","fling","texture","rub","citizen","crouch","facade","harvest","physical","bell","breeze","upset","limited","bounce","cap","sun","elaborate","herd","useful","stand","resist","clinic","alive","use","country","tycoon","terms","irony","score","ton","plant","basin","folk","root","ego","goat","stage","dry","powder","straw"];
 
-const svgElements = ['<circle fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="181.032199" cy="90.062339" r="52.325901" id="head"/>',
+var svgElements = ['<circle fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="181.032199" cy="90.062339" r="52.325901" id="head"/>',
 	'<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="181.032199" y1="144.062339" x2="182.032199" y2="301.062339" id="torso"/>',
 	' <line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="121.425061" y1="157.419516" x2="180.353635" y2="216.34809" id="left_arm"/>',
 	'<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="180.353632" y1="159.205231" x2="239.282206" y2="218.133805" id="right_arm" transform="rotate(90 209.8179168701172,188.66950988769534) "/>',
@@ -8,23 +8,21 @@ const svgElements = ['<circle fill="none" stroke="#000000" stroke-width="5" stro
 	'<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="182.121835" y1="302.955229" x2="241.050409" y2="361.883803" id="right_leg"/>'
 ];
 
-let mysteryWord = "";
-let totalRight = 0;
-let totalWrong = 0;
-let alreadyGuessed = [];
-let gameOver = false;
+var mysteryWord = "";
+var totalRight = 0;
+var totalWrong = 0;
+var alreadyGuessed = [];
 
-const pickWord = () => {
+var pickWord = function() {
 	mysteryWord = wordList[Math.floor(Math.random() * wordList.length)];
 	console.log(mysteryWord);
 	$("#wordBlanks").html("Mystery word: "); //clear possible contents from a previous game
-	for (let i = 0; i < mysteryWord.length; i++) {
+	for (var i = 0; i < mysteryWord.length; i++) {
 		$("#wordBlanks").append(`<span id="blank${i}"> _</span>`);
 	}
 }
 
-const reset = () => {
-	gameOver = false;
+var reset = function() {
 	totalRight = 0;
 	totalWrong = 0;
 	alreadyGuessed = [];
@@ -39,7 +37,7 @@ const reset = () => {
 	$(".invisible").removeClass("invisible");
 }
 
-const wrongGuess = letter => {
+var wrongGuess = function(letter) {
 	totalWrong++;
 	$("#wrongGuesses").append(" " + letter);
 	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1]; //jQuery doesn't play well with the XML markup of SVG
@@ -48,15 +46,15 @@ const wrongGuess = letter => {
 	if (totalWrong === 6) {
 		$("#rightCol").append(`
 			<div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h3>Sorry, you lost.</h3>
 				<p>The word was "${mysteryWord}"</p>
 				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
 			</div>`);
-		gameOver = true;
 	}
 }
 
-const rightGuess = letter => {
+var rightGuess = function(letter) {
 	for (var i = 0; i < mysteryWord.length; i++) {
 		if (mysteryWord[i] === letter) {
 			totalRight++; //iterate here to account for multiple ocurrences of the same letter
@@ -68,17 +66,14 @@ const rightGuess = letter => {
 	if (totalRight === mysteryWord.length) {
 		$("#rightCol").append(`
 			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h3>Yay! You won!</h3>
 				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
 			</div>`);
-		gameOver = true;
 	}
 }
 
-const guessLetter = userGuess => {
-	if (gameOver) {
-		return;
-	}
+var guessletter = function(userGuess) {
 	console.log(userGuess);
 	if (!(/^[a-z]$/).test(userGuess) || alreadyGuessed.includes(userGuess)) {
 		return;
@@ -92,12 +87,12 @@ const guessLetter = userGuess => {
 window.onload = pickWord();
 
 document.onkeyup = function(e){
-	let letter = e.key.toLowerCase();
-	guessLetter(letter);
+	var letter = e.key.toLowerCase();
+	guessletter(letter);
 }
 
 $(".alphaBtn").on('click touchstart', function(){
-	guessLetter($(this).text().toLowerCase());
+	guessletter($(this).text().toLowerCase());
 });
 
 // future: display score, have a score reset button
