@@ -86,6 +86,8 @@ document.onkeyup = function(e){
 	guessLetter(letter);
 }
 
-$(".alphaBtn").click(guessLetter(this.innerHTML));
+$(".alphaBtn").click(function(){
+	guessLetter($(this).text().toLowerCase());
+});
 
 // future: display score, have a score reset button
