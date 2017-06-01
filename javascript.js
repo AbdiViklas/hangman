@@ -91,8 +91,12 @@ document.onkeyup = function(e){
 	guessLetter(letter);
 }
 
-$(".alphaBtn").click(function(){
+$(".alphaBtn").on("click touchstart")(function(){
 	guessLetter($(this).text().toLowerCase());
 });
 
 // future: display score, have a score reset button
+// given: right now the buttons work on Chrome, Edge, with pointing devices
+// given: on Safari it seems the buttons don't activate
+// given: on IE(v?) perhaps the same?
+// hypothesis: $.click doesn't work on touch devices?
