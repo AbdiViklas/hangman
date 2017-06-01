@@ -38,7 +38,7 @@ const reset = () => {
 const wrongGuess = letter => {
 	totalWrong++;
 	$("#wrongGuesses").append(" " + letter);
-	$("#svg").append(svgElements[totalWrong - 1]);
+	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1]; //jQuery doesn't play well with the XML markup of SVG
 	alreadyGuessed.push(letter);
 	if (totalWrong === 6) {
 		alert("You lose. The word was: " + mysteryWord);
