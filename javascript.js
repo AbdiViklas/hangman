@@ -16,9 +16,9 @@ let alreadyGuessed = [];
 const pickWord = () => {
 	mysteryWord = wordList[Math.floor(Math.random() * wordList.length)];
 	console.log(mysteryWord);
-	document.getElementById("wordBlanks").innerHTML = "Mystery word: "; //clear possible contents from a previous game
+	$("#wordBlanks").html("Mystery word: "); //clear possible contents from a previous game
 	for (let i = 0; i < mysteryWord.length; i++) {
-		document.getElementById("wordBlanks").innerHTML += `<span id="blank${i}"> _</span>`;
+		$("#wordBlanks").append(`<span id="blank${i}"> _</span>`);
 	}
 }
 
@@ -27,43 +27,60 @@ const reset = () => {
 	totalWrong = 0;
 	alreadyGuessed = [];
 	pickWord();
-	document.getElementById("wrongGuesses").innerHTML = "Wrong guesses: "
-	document.getElementById("svg").innerHTML = `<title>Layer 1</title>
+	$("#wrongGuesses").html("Wrong guesses: ");
+	$("#svg").html(`<title>Layer 1</title>
 				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="2.5" y1="404.460793" x2="123.486114" y2="404.460793" id="gallows base"/>
 				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="62.303922" y1="4.460785" x2="62.303922" y2="406.852957" id="gallows upright"/>
 				<line fill="none" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="59.362741" y1="2.500001" x2="182.07208" y2="2.500001" id="gallows upright" stroke="#000000"/>
-				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="177.009807" y1="19.166668" x2="177.009807" y2="5.441177" id="rope"/>`;
+				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="177.009807" y1="19.166668" x2="177.009807" y2="5.441177" id="rope"/>`);
 }
 
 const wrongGuess = letter => {
 	totalWrong++;
-	document.getElementById("wrongGuesses").innerHTML += " " + letter;
-	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1];
+	$("#wrongGuesses").append(" " + letter);
+	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1]; //jQuery doesn't play well with the XML markup of SVG
 	alreadyGuessed.push(letter);
 	if (totalWrong === 6) {
-		alert("You lose. The word was: " + mysteryWord);
-		reset();
+		$("#rightCol").append(`
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3>Sorry, you lost.</h3>
+				<p>The word was "${mysteryWord}"</p>
+				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
+			</div>`);
 	}
 }
 
 const rightGuess = letter => {
 	for (var i = 0; i < mysteryWord.length; i++) {
 		if (mysteryWord[i] === letter) {
+<<<<<<< HEAD
 			document.getElementById("blank" + i).innerHTML = " " + letter;
 			totalRight++; //iterate here to account for multiple ocurrences of the same letter
+=======
+			$("#blank" + i).html(" " + letter);
+>>>>>>> mobile-friendly
 		}
 	}
 	alreadyGuessed.push(letter);
 	if (totalRight === mysteryWord.length) {
-		alert("Yay!! You win!");
-		reset();
+		$("#rightCol").append(`
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3>Yay! You won!</h3>
+				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
+			</div>`);
 	}
 }
 
-window.onload = pickWord();
+// const winCheck = () => {
+// 	if (totalRight === mysteryWord.length) {
+// 		alert("Yay!! You win!");
+// 		reset();
+// 	}
+// }
 
-document.onkeyup = event => {
-	let userGuess = event.key.toLowerCase();
+const guessLetter = userGuess => {
 	console.log(userGuess);
 	if (!(/^[a-z]$/).test(userGuess)) {
 		alert("Letter keys only, please.");
@@ -76,5 +93,16 @@ document.onkeyup = event => {
 		rightGuess(userGuess);
 	}
 }
+
+window.onload = pickWord();
+
+document.onkeyup = function(e){
+	let letter = e.key.toLowerCase();
+	guessLetter(letter);
+}
+
+$(".alphaBtn").click(function(){
+	guessLetter($(this).text().toLowerCase());
+});
 
 // future: display score, have a score reset button

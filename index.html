@@ -2,25 +2,71 @@
 <html>
 <head>
 	<title>Hangman</title>
+	<!-- Bootstrap css -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 <body>
-	<h1>Pick a letter!</h1>
-	<h3>I'm thinking of a word. Choose a letter with the keyboard. If my word contains your letter, I'll fill in every occurrence of it; if it does not I'll fill in part of the picture.</h3>
-	<div id="hangPic">
-		<svg width="244" height="409" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-			<!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
-			<g id="svg">
-				<title>Layer 1</title>
-				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="2.5" y1="404.460793" x2="123.486114" y2="404.460793" id="gallows base"/>
-				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="62.303922" y1="4.460785" x2="62.303922" y2="406.852957" id="gallows upright"/>
-				<line fill="none" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="59.362741" y1="2.500001" x2="182.07208" y2="2.500001" id="gallows upright" stroke="#000000"/>
-				<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="177.009807" y1="19.166668" x2="177.009807" y2="5.441177" id="rope"/>
-			</g>
-		</svg>
-	</div>
-	<h3 id="wordBlanks">Mystery word: </h3>
-	<h3 id="wrongGuesses">Wrong guesses: </h3>
-
+	<div class="container-fluid">
+		<div class="row vertical-center">
+			<div class="col-md-12 col-lg-6 col-lg-offset-3 panel panel-default"> <!-- main body -->
+				<h1>Pick a letter!</h1>
+				<h3 id="instructions">I'm thinking of a word. Choose a letter by typing, or click the alphabet buttons below. If my word contains your letter, I'll fill in every occurrence of it; if it does not I'll fill in part of the picture.</h3>
+				<div class="row">
+					<div class="col-sm-6">
+					<div id="hangPic" class="text-center">
+							<svg width="244" height="409" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+								<!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+								<g id="svg">
+									<title>Layer 1</title>
+									<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="2.5" y1="404.460793" x2="123.486114" y2="404.460793" id="gallows base"/>
+									<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="62.303922" y1="4.460785" x2="62.303922" y2="406.852957" id="gallows upright"/>
+									<line fill="none" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="59.362741" y1="2.500001" x2="182.07208" y2="2.500001" id="gallows upright" stroke="#000000"/>
+									<line fill="none" stroke="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x1="177.009807" y1="19.166668" x2="177.009807" y2="5.441177" id="rope"/>
+								</g>
+							</svg>
+						</div> <!-- close #hangPic -->
+					</div> <!-- close pic col -->
+					<div id="rightCol" class="col-sm-6">
+						<h3 id="wordBlanks">Mystery word: </h3>
+						<h3 id="wrongGuesses">Wrong guesses: </h3>
+					</div> <!-- close blanks col -->
+				</div> <!-- close sub-row -->
+				<div id="alphaBtn-container">
+					<button class="btn btn-default alphaBtn">A</button>
+					<button class="btn btn-default alphaBtn">B</button>
+					<button class="btn btn-default alphaBtn">C</button>
+					<button class="btn btn-default alphaBtn">D</button>
+					<button class="btn btn-default alphaBtn">E</button>
+					<button class="btn btn-default alphaBtn">F</button>
+					<button class="btn btn-default alphaBtn">G</button>
+					<button class="btn btn-default alphaBtn">H</button>
+					<button class="btn btn-default alphaBtn">I</button>
+					<button class="btn btn-default alphaBtn">J</button>
+					<button class="btn btn-default alphaBtn">K</button>
+					<button class="btn btn-default alphaBtn">L</button>
+					<button class="btn btn-default alphaBtn">M</button>
+					<button class="btn btn-default alphaBtn">N</button>
+					<button class="btn btn-default alphaBtn">O</button>
+					<button class="btn btn-default alphaBtn">P</button>
+					<button class="btn btn-default alphaBtn">Q</button>
+					<button class="btn btn-default alphaBtn">R</button>
+					<button class="btn btn-default alphaBtn">S</button>
+					<button class="btn btn-default alphaBtn">T</button>
+					<button class="btn btn-default alphaBtn">U</button>
+					<button class="btn btn-default alphaBtn">V</button>
+					<button class="btn btn-default alphaBtn">W</button>
+					<button class="btn btn-default alphaBtn">X</button>
+					<button class="btn btn-default alphaBtn">Y</button>
+					<button class="btn btn-default alphaBtn">Z</button>					
+				</div> <!-- close alphabet row -->
+			</div> <!-- close main body col -->
+		</div> <!-- close row -->
+	</div> <!-- close container-fluid -->
 	<script type="text/javascript" src="javascript.js"></script>
 </body>
 </html>
