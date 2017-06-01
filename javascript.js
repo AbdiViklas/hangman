@@ -41,8 +41,13 @@ const wrongGuess = letter => {
 	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1]; //jQuery doesn't play well with the XML markup of SVG
 	alreadyGuessed.push(letter);
 	if (totalWrong === 6) {
-		alert("You lose. The word was: " + mysteryWord);
-		reset();
+		$("#rightCol").append(`
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3>Sorry, you lost.</h3>
+				<p>The word was "${mysteryWord}"</p>
+				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
+			</div>`);
 	}
 }
 
@@ -54,16 +59,22 @@ const rightGuess = letter => {
 		}
 	}
 	alreadyGuessed.push(letter);
-	return;
-}
-
-const winCheck = () => {
-	console.log("winCheck fired");
 	if (totalRight === mysteryWord.length) {
-		alert("Yay!! You win!");
-		reset();
+		$("#rightCol").append(`
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3>Yay! You won!</h3>
+				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
+			</div>`);
 	}
 }
+
+// const winCheck = () => {
+// 	if (totalRight === mysteryWord.length) {
+// 		alert("Yay!! You win!");
+// 		reset();
+// 	}
+// }
 
 const guessLetter = userGuess => {
 	console.log(userGuess);
@@ -76,8 +87,6 @@ const guessLetter = userGuess => {
 		wrongGuess(userGuess);
 	} else {
 		rightGuess(userGuess);
-		console.log("here goes winCheck")
-		winCheck();
 	}
 }
 
