@@ -14,8 +14,8 @@
 	<div class="container-fluid">
 		<div class="row vertical-center">
 			<div class="col-md-12 col-lg-6 col-lg-offset-3 panel panel-default"> <!-- main body -->
-				<h1>Pick a letter!</h1>
-				<h3 id="instructions">I'm thinking of a word. Choose a letter by typing, or click the alphabet buttons below. If my word contains your letter, I'll fill in every occurrence of it; if it does not I'll fill in part of the picture.</h3>
+				<!--<h1>Pick a letter!</h1>
+				<h3 id="instructions">I'm thinking of a word. Choose a letter by typing, or click the alphabet buttons below. If my word contains your letter, I'll fill in every occurrence of it; if it does not I'll fill in part of the picture.</h3>-->
 				<div class="row">
 					<div class="col-sm-6">
 					<div id="hangPic" class="text-center">
@@ -67,6 +67,23 @@
 			</div> <!-- close main body col -->
 		</div> <!-- close row -->
 	</div> <!-- close container-fluid -->
+
+	<div id="instructionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h1 class="modal-title">Pick a letter!</h1>
+      </div>
+      <div class="modal-body">
+        <p>I'm thinking of a word. Choose a letter by typing, or click the alphabet buttons below. If my word contains your letter, I'll fill in every occurrence of it; if it does not I'll fill in part of the picture.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 	<script type="text/javascript" src="javascript.js"></script>
 </body>
 </html>

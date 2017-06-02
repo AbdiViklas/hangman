@@ -94,7 +94,10 @@ function guessletter(userGuess) {
 	}
 }
 
-window.onload = pickWord();
+window.onload = function () {
+	pickWord();
+	$("#instructionModal").modal();
+} 
 
 document.onkeyup = function (e) {
 	var letter = e.key.toLowerCase();
