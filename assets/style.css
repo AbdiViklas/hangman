@@ -26,11 +26,20 @@ body {
 }
 
 #hangPic {
+	max-height: 25%;
 	margin: 20px;
 }
 
 .alphaBtn {
-	min-width: 50px !important;
-	min-height: 50px !important;
-	margin: 10px;
+	min-width: 40px;
+	min-height: 40px;
+	margin: 5px;
+}
+
+/*@media screen and (max-width: 768px) {
+	#alphaBtn-container .alphaBtn {
+		min-width: 60px;
+		min-height: 60px;
+		margin: 10px;
+	}*/
 }
