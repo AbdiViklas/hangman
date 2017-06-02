@@ -15,12 +15,10 @@
 	<div class="container-fluid">
 		<div class="row vertical-center">
 			<div class="col-md-12 col-lg-6 col-lg-offset-3 panel panel-default"> <!-- main body -->
-				<!--<h1>Pick a letter!</h1>
-				<h3 id="instructions">I'm thinking of a word. Choose a letter by typing, or click the alphabet buttons below. If my word contains your letter, I'll fill in every occurrence of it; if it does not I'll fill in part of the picture.</h3>-->
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-xs-6">
 					<div id="hangPic" class="text-center">
-							<svg width="244" height="409" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+							<svg id="hangSVG" width="244" height="409" viewBox="0 0 244 409" preserveAspectRatio="xMinYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
 								<!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
 								<g id="svg">
 									<title>Layer 1</title>
@@ -32,9 +30,9 @@
 							</svg>
 						</div> <!-- close #hangPic -->
 					</div> <!-- close pic col -->
-					<div id="rightCol" class="col-md-6">
-						<h3 id="wordBlanks">Mystery word: </h3>
-						<h3 id="wrongGuesses">Wrong guesses: </h3>
+					<div id="rightCol" class="col-xs-6">
+						<h3 id="wordBlanks" class="rightWrong">Mystery word: </h3>
+						<h3 id="wrongGuesses" class="rightWrong">Wrong guesses: </h3>
 						<!-- here goes alphaBtns -->
 					</div> <!-- close blanks col -->
 				</div> <!-- close sub-row -->

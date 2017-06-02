@@ -26,8 +26,16 @@ body {
 }
 
 #hangPic {
-	max-height: 25%;
 	margin: 20px;
+}
+
+#hangSVG {
+	max-height: 25vh;
+}
+
+.btn {
+    white-space: normal !important;
+    word-wrap: break-word;
 }
 
 .alphaBtn {
@@ -36,10 +44,13 @@ body {
 	margin: 5px;
 }
 
-/*@media screen and (max-width: 768px) {
-	#alphaBtn-container .alphaBtn {
-		min-width: 60px;
-		min-height: 60px;
-		margin: 10px;
-	}*/
+@media screen and (max-width: 768px) {
+	.rightWrong {
+		font-size: .8em;
+	}
+
+	.alert {
+		width: 90vw !important;
+		transform: translate(-50vw);
+	}
 }
