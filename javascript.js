@@ -43,29 +43,30 @@ function reset() {
 	gameOver = false;
 }
 
-// act on a wrong guess and check for game losing
+// act on a wrong guess and check whether user has lost the game
 function wrongGuess(letter) {
 	totalWrong++;
 	$("#wrongGuesses").append(" " + letter);
 	document.getElementById("svg").innerHTML += svgElements[totalWrong - 1]; //jQuery doesn't play well with the XML markup of SVG
 	alreadyGuessed.push(letter);
-	$("#" + letter).addClass("invisible");
+	$("#" + letter).addClass("invisible"); // hide the letter button. ".invisible" is a Bootstrap class
 	if (totalWrong === 6) {
 		$("#rightCol").append(`
 			<div class="alert alert-danger alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h3>Sorry, you lost.</h3>
-				<p>The word was "${mysteryWord}"</p>
+				<p>The word was "${mysteryWord}."</p>
 				<button type="button" class="btn btn-default btn-lg btn-block" onclick="reset()">Play again</button>
 			</div>`);
 		gameOver = true;
 	}
 }
-	
+
+// act on a right guess and check whether user has won the game	
 function rightGuess(letter) {
 	for (var i = 0; i < mysteryWord.length; i++) {
 		if (mysteryWord[i] === letter) {
-			totalRight++; //iterate here to account for multiple ocurrences of the same letter
+			totalRight++; //iterate here, inside the loop, to account for multiple ocurrences of the same letter withing mysteryWord
 			$("#blank" + i).html(" " + letter);
 		}
 	}
