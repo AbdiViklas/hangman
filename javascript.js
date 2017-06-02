@@ -1,4 +1,4 @@
-var wordList = ["tight", "flavor", "pass", "navy", "peasant", "ridge", "slump", "outlook", "scrap", "crevice", "determine", "fling", "texture", "rub", "citizen", "crouch", "facade", "harvest", "physical", "bell", "breeze", "upset", "limited", "bounce", "cap", "sun", "elaborate", "herd", "useful", "stand", "resist", "clinic", "alive", "use", "country", "tycoon", "terms", "irony", "score", "ton", "plant", "basin", "folk", "root", "ego", "goat", "stage", "dry", "powder", "straw"];
+var wordList = ["covfefe", "tight", "flavor", "pass", "navy", "peasant", "ridge", "slump", "outlook", "scrap", "crevice", "determine", "fling", "texture", "rub", "citizen", "crouch", "facade", "harvest", "physical", "bell", "breeze", "upset", "limited", "bounce", "cap", "sun", "elaborate", "herd", "useful", "stand", "resist", "clinic", "alive", "use", "country", "tycoon", "terms", "irony", "score", "ton", "plant", "basin", "folk", "root", "ego", "goat", "stage", "dry", "powder", "straw"];
 // future feature: poll a random word generating API to build wordList
 
 // the gallows is already in the html. These are the elements of the man:
