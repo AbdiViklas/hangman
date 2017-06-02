@@ -30,7 +30,7 @@ body {
 }
 
 .alphaBtn {
-	min-width: 50px !important;
-	min-height: 50px !important;
+	min-width: 6vw !important;
+	min-height: 6vw !important;
 	margin: 5px;
 }
