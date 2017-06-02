@@ -86,7 +86,7 @@ function rightGuess(letter) {
 function guessletter(userGuess) {
 	console.log(userGuess);
 	if (gameOver === true || !(/^[a-z]$/).test(userGuess) || alreadyGuessed.includes(userGuess)) {
-		return;
+		return; // reject input if game is over, key pressed is not a letter, or letter has already been guessed
 	} else if (!mysteryWord.includes(userGuess)) {
 		wrongGuess(userGuess);
 	} else {
@@ -101,6 +101,7 @@ document.onkeyup = function(e){
 	guessletter(letter);
 }
 
+// instead of $.click, the usage below alows for touch devices too
 $(".alphaBtn").on('click touchstart', function(){
 	guessletter($(this).text().toLowerCase());
 });
