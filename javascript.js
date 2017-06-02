@@ -1,4 +1,4 @@
-var wordList = ["tight","flavor","pass","navy","peasant","ridge","slump","outlook","scrap","crevice","determine","fling","texture","rub","citizen","crouch","facade","harvest","physical","bell","breeze","upset","limited","bounce","cap","sun","elaborate","herd","useful","stand","resist","clinic","alive","use","country","tycoon","terms","irony","score","ton","plant","basin","folk","root","ego","goat","stage","dry","powder","straw"];
+var wordList = ["tight", "flavor", "pass", "navy", "peasant", "ridge", "slump", "outlook", "scrap", "crevice", "determine", "fling", "texture", "rub", "citizen", "crouch", "facade", "harvest", "physical", "bell", "breeze", "upset", "limited", "bounce", "cap", "sun", "elaborate", "herd", "useful", "stand", "resist", "clinic", "alive", "use", "country", "tycoon", "terms", "irony", "score", "ton", "plant", "basin", "folk", "root", "ego", "goat", "stage", "dry", "powder", "straw"];
 // future feature: poll a random word generating API to build wordList
 
 // the gallows is already in the html. These are the elements of the man:
@@ -96,13 +96,13 @@ function guessletter(userGuess) {
 
 window.onload = pickWord();
 
-document.onkeyup = function(e){
+document.onkeyup = function (e) {
 	var letter = e.key.toLowerCase();
 	guessletter(letter);
 }
 
 // instead of $.click, the usage below alows for touch devices too
-$(".alphaBtn").on('click touchstart', function(){
+$(".alphaBtn").on('click touchstart', function () {
 	guessletter($(this).text().toLowerCase());
 });
 
