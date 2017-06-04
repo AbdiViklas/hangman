@@ -31,9 +31,14 @@
 						</div> <!-- close #hangPic -->
 					</div> <!-- close pic col -->
 					<div id="rightCol" class="col-xs-6">
+						<nav aria-label="Page navigation" class="text-right">
+							<ul class="pagination">
+								<li><a href="olde.html">Olde</a></li>
+								<li class="active"><a href="#">Modern <span class="sr-only">(current)</span></a></li>
+							</ul>
+						</nav>
 						<h3 id="wordBlanks" class="rightWrong">Mystery word: </h3>
 						<h3 id="wrongGuesses" class="rightWrong">Wrong guesses: </h3>
-						<!-- here goes alphaBtns -->
 					</div> <!-- close blanks col -->
 				</div> <!-- close sub-row -->
 				<div id="alphaBtn-container">
@@ -77,6 +82,7 @@
       </div>
       <div class="modal-body">
         <p>I'm thinking of a word. Choose a letter by typing, or click the alphabet buttons below. If my word contains your letter, I'll fill in every occurrence of it; if it does not I'll fill in part of the picture.</p>
+				<p>Look out for the time-travel switch in the corner!</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
