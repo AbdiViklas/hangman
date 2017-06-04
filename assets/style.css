@@ -33,6 +33,10 @@ body {
 	max-height: 25vh;
 }
 
+.pagination {
+	margin: 5px;
+}
+
 .btn {
     white-space: normal !important;
     word-wrap: break-word;
